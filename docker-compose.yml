@@ -1,0 +1,12 @@
+services:
+  api:
+    build: ./backend
+    ports: ["11900:11900"]
+    environment:
+      OTPGATE_DB: /data/otpgate.db
+    volumes:
+      - ./data:/data
+  web:
+    build: ./frontend
+    ports: ["6900:80"]
+    depends_on: [api]
